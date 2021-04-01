@@ -11,29 +11,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path: "/brazil",
-    name: "brazil",
-    component: () => import('../views/About.vue')
-  },
-  {
-    path: "/hawaii",
-    name: "hawaii",
-    component: () => import('../views/Hawaii.vue')
-  },
-  {
-    path: "/panama",
-    name: "panama",
-    component: () => import('../views/Panama.vue')
-  },
-  {
-    path: "/jamaica",
-    name: "jamaica",
-    component: () => import('../views/Jamaica.vue')
+    path: "/details/:id",
+    name: "DestinationDetails",
+    component: () => import('../views/DestinationDetails.vue')
   },
 ]
 

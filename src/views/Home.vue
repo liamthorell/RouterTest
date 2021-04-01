@@ -2,13 +2,13 @@
   <div class="home">
     <h1>All Destinations</h1>
     <div class="destinations">
-      <div v-for="destination in destinations" :key="destination.name">
-        <router-link :to="destination.slug">
+      <div v-for="destination in destinations" :key="destination.id">
+        <router-link :to="{ name: 'DestinationDetails', params: {id: destination.id}}">
           <h2>{{destination.name}}</h2>
         </router-link>
         <figure>
-          <router-link :to="destination.slug">
-            <img :src="require(`@/assets/${destination.image}`)" :alt="destination.name">
+          <router-link :to="{ name: 'DestinationDetails', params: {id: destination.id} }">
+            <img :src="require(`@/assets/${destination.image}`)" :alt="destination.id">
           </router-link>
         </figure>
       </div>
@@ -43,5 +43,13 @@ export default {
   .destinations {
     display: flex;
     justify-content: space-between;
+  }
+  a {
+    color: lightseagreen;
+    text-decoration: none;
+  }
+  a:hover,
+  a:visited {
+    text-decoration: underline;
   }
 </style>
