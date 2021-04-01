@@ -1,4 +1,6 @@
 <template>
+<div>
+  <GoBack />
   <section class="destination">
     <h1>{{destination.name}}</h1>
     <div class="destination-details">
@@ -6,14 +8,31 @@
       <p>{{destination.description}}</p>
     </div>
   </section>
+  <section class="experiences">
+    <h2>Top experiences</h2>
+    <div class="cards">
+      <div class="card" v-for="experience in destination.experiences" :key="experience.slug">
+        <router-link :to="{ name: 'ExperienceDetails', params: {experienceSlug: experience.slug} }">
+        <img :src="require(`@/assets/${experience.image}`)" :alt="experience.name">
+        <span class="card-text">{{experience.name}}</span>
+        </router-link>
+      </div>
+    </div>
+    <router-view :key="$route.path"></router-view>
+  </section>
+</div>
 </template>
 
 <script>
 import store from "@/store.js"
+import GoBack from "@/components/GoBack.vue"
 export default {
   data() {
     return {
     }
+  },
+  components: {
+    GoBack
   },
   props: {
     slug: {
@@ -26,7 +45,7 @@ export default {
       return store.destinations.find(
         destination => destination.slug === this.slug
       )
-    }
+    },
   },
 }
 </script>
@@ -47,4 +66,25 @@ export default {
     font-size: 20px;
     text-align: left;
   }
+  .cards {
+  display: flex;
+  justify-content: space-between;
+}
+.cards img {
+  max-height: 200px;
+}
+.card {
+  padding: 0 20px;
+  position: relative;
+}
+.card-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
+}
 </style>

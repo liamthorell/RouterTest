@@ -15,7 +15,15 @@ const routes = [
     path: "/details/:slug",
     name: "DestinationDetails",
     component: () => import('../views/DestinationDetails.vue'),
-    props: true
+    props: true,
+    children: [
+      {
+        path: ":experienceSlug",
+        name: "ExperienceDetails",
+        component: () => import('../views/ExperienceDetails.vue'),
+        props: true
+      }
+    ]
   },
 ]
 
