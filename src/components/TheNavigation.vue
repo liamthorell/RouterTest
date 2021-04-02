@@ -8,6 +8,9 @@
       <li v-for="destination in destinations" :key="destination.id" class="links">
         <router-link :to="{ name: 'DestinationDetails', params: {slug: destination.slug} }"> {{ destination.name }}</router-link>
       </li>
+      <li class="links">
+        <router-link :to="{ name: 'user' }">Dashboard</router-link>
+      </li>
     </ul>
     </nav>
 </template>
